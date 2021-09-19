@@ -1,3 +1,5 @@
+from group_structure import is_permutation_group
+
 """
 pyexample.
 

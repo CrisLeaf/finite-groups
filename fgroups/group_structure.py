@@ -60,10 +60,10 @@ def is_permutation_group(elements_array):
 		return True
 
 if __name__ == "__main__":
-	n = int(input("Enter Set cardinality:"))
+	cardinality = int(input("Enter Set cardinality:"))
 	iterable_list = []
-	for i in range(n):
-		element_string = input("Enter a list element separated by spaces:")
+	for i in range(cardinality):
+		element_string = input("Enter a list of elements separated by spaces:")
 		element_split = element_string.split()
 		element = list(map(int, element_split))
 		iterable_list.append(element)
