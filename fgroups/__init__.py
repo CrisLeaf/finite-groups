@@ -1,4 +1,4 @@
-from group_structure import is_permutation_group
+from .groups import PermutationGroup
 
 """
 pyexample.

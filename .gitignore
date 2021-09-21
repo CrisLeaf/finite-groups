@@ -1,4 +1,15 @@
 *.pyc
+*.tar.gz
+*.tgz
+
 build/
 dist/
 finite_groups.egg-info/
+_draft/
+__pycache__/
+
+# py test
+.cache
+.pytest_cache/
+
+
