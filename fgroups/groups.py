@@ -13,11 +13,11 @@ class PermutationGroup():
 	----------
 	- n_: int, the length of each list. The same n in the group S_n.
 	- identity_: list, the identity of the group.
-	- subgroup_: numpy array, the minimum subgroup containing each permutation in the elements_list.
+	- subgroup_: numpy array, the minimum subgroup containing each permutation in the subset.
 	- group_: numpy array, the S_n permutation group.
 	"""
-	def __init__(self, elements_list):
-		self.subset = elements_list
+	def __init__(self, subset):
+		self.subset = subset
 
 	def generate_group(self):
 		"""
@@ -54,18 +54,29 @@ class PermutationGroup():
 			accumulation.append(np.array(a))
 			accumulation.append(np.argsort(a))
 		self.subgroup_ = np.unique(accumulation, axis=0).copy()
+		if len(self.subgroup_) == 1:
+			return self
 		iterations = 0
 		while True:
-			if len(self.subgroup_) == 1:
-				return self
-			else:
+			iterations += 1
+			if iterations == 1:
 				for a, b in itertools.product(self.subgroup_, self.subgroup_):
 					accumulation.append(a[b])
+			else:
+				for a, b in itertools.product(self.subgroup_, diff):
+					accumulation.append(a[b])
+					accumulation.append(b[a])
+				for a, b in itertools.product(diff, diff):
+					accumulation.append(a[b])
+			accumulation = np.unique(accumulation, axis=0)
 			if all(any((a == b).all() for a in self.subgroup_) for b in accumulation):
 				break
 			else:
+				accumulation_rows = accumulation.view([("", accumulation.dtype)] * accumulation.shape[1])
+				subgroup_rows = self.subgroup_.view([("", self.subgroup_.dtype)] * self.subgroup_.shape[1])
+				diff = np.setdiff1d(accumulation_rows, subgroup_rows, assume_unique=True).view(accumulation.dtype).reshape(-1, accumulation.shape[1])
 				self.subgroup_ = np.unique(accumulation, axis=0).copy()
-			iterations += 1		
+				accumulation = list(accumulation)
 			if iterations == 10_000:
 				break 	# Just in case
 		self.subgroup_ = np.unique(accumulation, axis=0)

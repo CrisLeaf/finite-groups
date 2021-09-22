@@ -15,9 +15,14 @@ setuptools.setup(
     classifiers=[
         "Development Status :: 1 - Planning",
         "Intended Audience :: Science/Research",
+        "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",  
-        "Operating System :: POSIX :: Linux",
         "Programming Language :: Python :: 3.9",
+        "Topic :: Scientific/Engineering",
+        "Operating System :: POSIX",
+        "Operating System :: Microsoft :: Windows",
+        "Operating System :: Unix",
+        "Operating System :: MacOS",
     ],
 )
 

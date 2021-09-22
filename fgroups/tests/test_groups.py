@@ -71,8 +71,8 @@ def test_permutation_groups():
 	for iteration in range(100):
 		n = 8
 		random_number = random.sample(range(n), 1)
-		random_ordering = random.sample(range(random_number[0]+2), random_number[0]+2)
-		perm_group = PermutationGroup([random_ordering])
+		random_perm = random.sample(range(random_number[0]+2), random_number[0]+2)
+		perm_group = PermutationGroup([random_perm])
 		_subgroup = perm_group.generate_subgroup().subgroup_
 		perm_group_ = PermutationGroup(_subgroup)
 		assert perm_group_.is_permutation_group() == True
@@ -81,8 +81,8 @@ def test_permutation_groups():
 	for iteration in range(100):
 		n = 8
 		random_number = random.sample(range(n), 1)
-		random_ordering = random.sample(range(random_number[0]+2), random_number[0]+2)
-		perm_group = PermutationGroup([random_ordering])
+		random_perm = random.sample(range(random_number[0]+2), random_number[0]+2)
+		perm_group = PermutationGroup([random_perm])
 		n_group = perm_group.generate_group().group_
 		S_n = [item for item in itertools.permutations(np.arange(random_number[0]+2))]
 		assert_array_almost_equal(n_group, S_n)
