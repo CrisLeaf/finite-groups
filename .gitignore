@@ -1,6 +1,7 @@
 *.pyc
 *.tar.gz
 *.tgz
+_temp.py
 
 build/
 dist/
